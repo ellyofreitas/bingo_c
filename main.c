@@ -15,9 +15,9 @@
 
 // void create_player(PLAYER *p){
 
-//     // printf("Digite o nome: "); 
+//     // printf("Digite o nome: ");
 //     // scanf("%s", p->nome);
-    
+
 //     p->cart = (int *)  malloc(sizeof(int) * 25);
 //     create_cartela(p->cart);
 
@@ -33,7 +33,7 @@ void jogar(int *cart, int *rack){
     puts("Essa é sua cartela: ");
 
     print_cartela(cart, rack);
-    
+
     puts("Fique de olho para ver se não tem ninguem roubando ;)");
 
     // print_rack(rack);
@@ -42,41 +42,46 @@ void jogar(int *cart, int *rack){
 
     int acertos = num_marcados(cart, rack);
     // int last_acerto = 0;
-    
-    printf("\nPressione enter pra contiunar...");
+
+
     do{
-        getchar();
-        system("clear");
-        printf("\n+%d\n", sortear(rack));
-        
-        print_rack(rack);
-        
-        int buff = num_marcados(cart, rack);
-        
-        if(buff > acertos){
-            printf("Yeah, +1!\n");
-            acertos = buff;
-            print_cartela(cart, rack);
-            if(acertos != 24)
-                printf("Faltam apenas: %d", 24 - acertos);
-            else
-                puts("Acho que alguem ganhou!"), puts("Congratulations!!!");
-            // printf("\n+%d\n", last_acerto);
+        int continuar_sair;
+        printf("\nEscolha 1 para pedir bola e 0 para sair:");
+        scanf("%d", &continuar_sair);
+        if(continuar_sair==0){
+            acertos=25;
+        }else{
+            printf("\n+%d\n", sortear(rack));
+
+            print_rack(rack);
+
+            int buff = num_marcados(cart, rack);
+
+            if(buff > acertos){
+                printf("Yeah, +1!\n");
+                acertos = buff;
+                print_cartela(cart, rack);
+                if(acertos != 24)
+                    printf("Faltam apenas: %d", 24 - acertos);
+                else
+                    puts("Acho que alguem ganhou!"), puts("Congratulations!!!");
+                    // printf("\n+%d\n", last_acerto);
+            }
         }
         // print_rack(rack);
     }while(acertos < 24);
-    printf("\n");    
+    printf("\n");
     // print_cartela(cart, rack);
-    
+
     // print_rack(rack);
 }
 
 int main(){
-    system("clear");        
+    system("clear");
     // PLAYER * player = malloc(sizeof(PLAYER));
 
     // create_player(player);
-    
+
     int * cart = (int *) malloc(sizeof(int) * 25);
     int * rack = (int *) malloc(sizeof(int) * 75);
 
@@ -86,12 +91,14 @@ int main(){
 
     // rack[ cart[0] - 1 ] = cart[0];
 
-    jogar(cart, rack);
+    // jogar(cart, rack);
+
+    printf("%d\n", num_aleatorio(5, 10));
 
     destroy_rack(rack);
 
     destroy_cartela(cart);
-    
+
     // destroy_player(player);
 
 }

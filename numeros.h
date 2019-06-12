@@ -3,23 +3,24 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
-bool num_exists(int n, int *p, int lim){
-    for(int i = 0; i < lim; i++)
-        if(n == p[i])
+bool num_exists(int num, int *p, int n){
+    for(int i = 0; i < n; i++)
+        if(num == p[i])
             return true;
    return false;
 }
 
+int num_aleatorio(int inicio, int limite) { return inicio  + ( rand() % (limite + 1) ); }
 
-int num_aleatorio(int *p, int limite){
+int num_aleatorio_unico(int *p, int n, int inicio, int limite){
     
     int random_buff = 0;
     
     do{
     
-        random_buff = rand() % (limite + 1);
+        random_buff = num_aleatorio(inicio, limite);
 
-    }while(num_exists(random_buff, p, limite));
+    }while(num_exists(random_buff, p, n));
 
     return random_buff;
 }

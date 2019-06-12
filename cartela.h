@@ -15,17 +15,49 @@ bool valida_cartela(int *cart){
 }
 
 void create_cartela(int *p){
-    
+
     for(int i = 0; i < 25; i ++)
         p[i] = 0;
-    
+
     srand(time(NULL));
-    
+
     for(int i = 0; i < 25; i++)
         if(i == 12)
             p[i] = 100;
-        else 
-            p[i] = num_aleatorio(p, 75);
+        else{
+            
+        }
+            
+        // else if(i%5==0){
+        //         p[i]=16;
+        //     while(p[i]>15){
+        //         p[i] = num_aleatorio(p, 75);
+        //     }
+        // }
+        // else if(i==1 || i==6 || i==11 || i==16 || i==21){
+        //         p[i]=31;
+        //     while(p[i]>30 || p[i]<16 ){
+        //         p[i] = num_aleatorio(p, 75);
+        //     }
+        // }
+        // else if(i==2 || i==7 || i==17 || i==22){
+        //         p[i]=46;
+        //     while(p[i]>45 || p[i]<31 ){
+        //         p[i] = num_aleatorio(p, 75);
+        //     }
+        // }
+        // else if(i==3 || i==8 || i==13 || i==18 || i==23){
+        //         p[i]=61;
+        //     while(p[i]>60 || p[i]<46 ){
+        //         p[i] = num_aleatorio(p, 75);
+        //     }
+        // }
+        // else if(i==4 || i==9 || i==14 || i==19 || i==24){
+        //         p[i]=76;
+        //     while(p[i]>75 || p[i]<61 ){
+        //         p[i] = num_aleatorio(p, 75);
+        //     }
+        // }
 }
 
 void print_linha(int tam, bool skip_linha){
@@ -65,7 +97,7 @@ void print_cartela(int *cart, int *rack){
                 if(cart[i] < 10)
                     printf(" %d  |", cart[i]);
                 else
-                    printf(" %d |", cart[i]);    
+                    printf(" %d |", cart[i]);
     }
     // print_linha(26, true);
     printf("\n\n");
