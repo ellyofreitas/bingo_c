@@ -16,13 +16,11 @@ int num_aleatorio(int menor, int maior) {
 }
 
 int num_aleatorio_unico(int *p, int n, int inicio, int limite){
-    srand(time(NULL));
+    
     int random_buff = 0;
     
     do{
-    
         random_buff = num_aleatorio(inicio, limite);
-
     }while(num_exists(random_buff, p, n));
 
     return random_buff;

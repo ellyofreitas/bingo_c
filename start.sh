@@ -14,10 +14,10 @@ function executar(){
         read -p "Jogar? [S/n]: " jogar
         if [ $jogar = "S" ] || [ $jogar = "s" ]; then
             ./main
-            echo "Volte sempre!"
+            # echo "Volte sempre!"
             return;
         else
-            echo "Da proxima tente jogar!"
+            # echo "Da proxima tente jogar!"
             return;
         fi
     else

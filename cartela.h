@@ -2,6 +2,7 @@
 
 #include <stdbool.h>
 #include <stdlib.h>
+#include <time.h>
 
 bool valida_cartela(int *cart){
     for(int i = 0, count = 0; i < 24; i++){
@@ -15,7 +16,7 @@ bool valida_cartela(int *cart){
 }
 
 void create_cartela(int *p){
-
+    srand(time(NULL));
     for(int i = 0; i < 25; i++)
         if(i == 12)
             p[i] = 100;

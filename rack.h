@@ -2,9 +2,12 @@
 #pragma once
 
 #include <stdlib.h>
+#include <time.h>
 #include "numeros.h"
 
 int sortear(int *rack){
+
+    srand(time(NULL));
 
     int buff = num_aleatorio_unico(rack, 75, 1, 75);
 
