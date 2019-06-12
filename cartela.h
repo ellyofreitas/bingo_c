@@ -16,55 +16,26 @@ bool valida_cartela(int *cart){
 
 void create_cartela(int *p){
 
-    for(int i = 0; i < 25; i ++)
-        p[i] = 0;
-
-    srand(time(NULL));
-
     for(int i = 0; i < 25; i++)
         if(i == 12)
             p[i] = 100;
         else{
-            
+            int mod = i % 5;
+            p[i] = num_aleatorio_unico(p, 25, mod * 15, (mod + 1) * 15);
         }
-            
-        // else if(i%5==0){
-        //         p[i]=16;
-        //     while(p[i]>15){
-        //         p[i] = num_aleatorio(p, 75);
-        //     }
-        // }
-        // else if(i==1 || i==6 || i==11 || i==16 || i==21){
-        //         p[i]=31;
-        //     while(p[i]>30 || p[i]<16 ){
-        //         p[i] = num_aleatorio(p, 75);
-        //     }
-        // }
-        // else if(i==2 || i==7 || i==17 || i==22){
-        //         p[i]=46;
-        //     while(p[i]>45 || p[i]<31 ){
-        //         p[i] = num_aleatorio(p, 75);
-        //     }
-        // }
-        // else if(i==3 || i==8 || i==13 || i==18 || i==23){
-        //         p[i]=61;
-        //     while(p[i]>60 || p[i]<46 ){
-        //         p[i] = num_aleatorio(p, 75);
-        //     }
-        // }
-        // else if(i==4 || i==9 || i==14 || i==19 || i==24){
-        //         p[i]=76;
-        //     while(p[i]>75 || p[i]<61 ){
-        //         p[i] = num_aleatorio(p, 75);
-        //     }
-        // }
 }
 
-void print_linha(int tam, bool skip_linha){
+void print_linha(int tam, char carac, bool skip_linha){
     if(skip_linha)
         printf("\n");
     for(int i = 0; i < tam; i++)
-        printf("=");
+        printf("%c", carac);
+}
+
+void print_nome_bingo(){
+    print_linha(26, 's',true);
+    printf("\n| B  | I  | N  | G  | O  |");
+    print_linha(26, 's',true);
 }
 
 int num_marcados(int *cart, int *rack){
@@ -78,9 +49,8 @@ int num_marcados(int *cart, int *rack){
 }
 
 void print_cartela(int *cart, int *rack){
-
-    // printf("\nEllyo");
-    // print_linha(26, true);
+    
+    print_nome_bingo();
     for(int i = 0; i < 25; i ++){
         if(i % 5 == 0)
             printf("\n|");
@@ -99,7 +69,7 @@ void print_cartela(int *cart, int *rack){
                 else
                     printf(" %d |", cart[i]);
     }
-    // print_linha(26, true);
+    print_linha(26, 's', true);
     printf("\n\n");
 }
 

@@ -6,7 +6,7 @@
 
 int sortear(int *rack){
 
-    int buff = num_aleatorio(rack, 75);
+    int buff = num_aleatorio_unico(rack, 75, 1, 75);
 
     rack[ buff - 1 ] = buff;
 

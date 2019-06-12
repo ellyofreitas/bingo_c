@@ -2,6 +2,7 @@
 
 #include<stdlib.h>
 #include<stdbool.h>
+#include<time.h>
 
 bool num_exists(int num, int *p, int n){
     for(int i = 0; i < n; i++)
@@ -10,10 +11,12 @@ bool num_exists(int num, int *p, int n){
    return false;
 }
 
-int num_aleatorio(int inicio, int limite) { return inicio  + ( rand() % (limite + 1) ); }
+int num_aleatorio(int menor, int maior) {
+    return rand() % ((maior + 1) - menor) + menor;
+}
 
 int num_aleatorio_unico(int *p, int n, int inicio, int limite){
-    
+    srand(time(NULL));
     int random_buff = 0;
     
     do{
