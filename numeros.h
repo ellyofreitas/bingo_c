@@ -6,8 +6,11 @@
 
 bool num_exists(int num, int *p, int n){
     for(int i = 0; i < n; i++)
-        if(num == p[i])
+        if(num == p[i]){
+            // printf(":num+%d p:+%d", num, p[i]);
             return true;
+
+        }
    return false;
 }
 

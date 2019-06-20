@@ -7,13 +7,21 @@
 #include "cartela.h"
 #include "rack.h"
 
-void jogar(int *cart, int *rack){
+int menu(){
+    int esc = 0;
+    puts("Selecione uma modalidade\n");
+    printf("1 - Full house\n2 - Linha ou Coluna\n\nEscolha: ");
+    scanf("%d", &esc);
+    return esc;
+}
+
+void jogar(int *cart, int *rack, int modo){
     printf("\n");
     puts("Essa é sua cartela: ");
 
     print_cartela(cart, rack);
 
-    puts("Fique de olho para ver se não tem ninguem roubando ;)");
+    // puts("Fique de olho para ver se não tem ninguem roubando ;)");
 
     // print_rack(rack);
 
@@ -28,14 +36,15 @@ void jogar(int *cart, int *rack){
     scanf("%d", &buff);
     
     if(buff != 1){
-        printf("\nJá desistiu?\n"); 
+        printf("\nObrigado e volte sempre.\n"); 
         return;
     }
     
     do{
         system("clear");
-        printf("\n+%d\n", sortear(rack));
-
+        printf("\nNumero sorteado: %d\n", sortear(rack));
+        
+        print_roleta(rack);
         print_rack(rack);
 
         int buff = num_marcados(cart, rack);
@@ -44,20 +53,18 @@ void jogar(int *cart, int *rack){
             printf("Yeah, +1!\n");
             acertos = buff;
             print_cartela(cart, rack);
-            if(acertos != 24)
-                printf("Faltam apenas: %d\n", 24 - acertos);
-            else{
-                puts("Congratulations!!!");
+            if(ganhou(cart, rack, modo)){
+                printf("Bingo!!!");
                 break;
             }
         }
         printf("\nEscolha 1 para pedir bola e 0 para sair: ");
-    }while(acertos < 24 && scanf("%d", &buff) && buff == 1);
-    
+    }while(!ganhou(cart, rack, modo) && scanf("%d", &buff) && buff == 1);
+
     printf("\n");
     
     if(buff != 1){
-        printf("Já desistiu?\n");
+        printf("\nObrigado e volte sempre.\n"); 
         return;
     }
 }
@@ -74,12 +81,10 @@ int main(){
 
     create_cartela(cart);
 
-    jogar(cart, rack);
+    jogar(cart, rack, menu());
 
     destroy_rack(rack);
 
     destroy_cartela(cart);
-
-    // destroy_player(player);
 
 }

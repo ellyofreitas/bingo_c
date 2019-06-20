@@ -17,16 +17,31 @@ int sortear(int *rack){
 }
 
 void print_rack(int *rack){
-    
+    printf("\nRack: ");
     for(int i = 0; i < 75; i++){
         if(i % 15 == 0)
             printf("\n");
         if(rack[i] != 0)
-            printf("%d ", rack[i]);
+            printf("%d", rack[i]);
         else
-            printf("_ ");
+            printf("_");
+        printf("\t");
     }
 
+    printf("\n\n");
+}
+
+void print_roleta(int *rack){
+    printf("\nRoleta: ");
+    for(int i = 0; i < 75; i++){
+        if(i % 15 == 0)
+            printf("\n");
+        if(rack[i] != 0)
+            printf("_");
+        else
+            printf("%d", i + 1);
+        printf("\t");
+    }
     printf("\n\n");
 }
 

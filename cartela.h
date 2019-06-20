@@ -21,8 +21,10 @@ void create_cartela(int *p){
         if(i == 12)
             p[i] = 100;
         else{
-            int mod = i % 5;
-            p[i] = num_aleatorio_unico(p, 25, mod * 15, (mod + 1) * 15);
+            int mod = i % 5, m = mod * 15, M = (mod + 1) * 15;
+            if(m != 0)
+                m++;
+            p[i] = num_aleatorio_unico(p, 25, m, M);
         }
 }
 
@@ -72,6 +74,61 @@ void print_cartela(int *cart, int *rack){
     }
     print_linha(26, 's', true);
     printf("\n\n");
+}
+
+bool linha_bateu(int *cart, int *rack, int lin){
+    if(lin == 2)
+        return false;
+    else{
+        int count = 0;
+        for(int i = (lin * 5); i < ((lin * 5) + 5); i++){
+            if(cart[i] != 0 && num_exists(cart[i], rack, 75))
+                count++;
+        }
+        if(count == 5)
+            return true;
+        else
+            return false;
+    }
+    return false;
+}
+
+bool coluna_bateu(int *cart, int *rack, int col){
+    if(col == 2)
+        return false;
+    else{
+        int count = 0;
+        for(int i = col; i < 25; i+= 5){
+            if(cart[i] != 0 && num_exists(cart[i], rack, 75))
+                count++;
+        }
+        if(count == 5)
+            return true;
+        else
+            return false;
+    }
+    return false;
+}
+
+bool ganhou(int *cart, int *rack, int modo){
+    switch(modo){
+        case 1:
+            if(num_marcados(cart, rack) >= 24)
+                return true;
+            else
+                return false; 
+            break;
+        case 2:
+            for(int i = 0; i < 5; i++)
+                if(linha_bateu(cart, rack, i))
+                    return true;
+            for(int i = 0; i < 5; i++)
+                if(coluna_bateu(cart, rack, i))
+                    return true;
+            return false;
+            break;
+    }
+    return false;
 }
 
 void destroy_cartela(int *cart){

@@ -13,6 +13,7 @@ function executar(){
     if [ -f ./main ]; then
         read -p "Jogar? [S/n]: " jogar
         if [ $jogar = "S" ] || [ $jogar = "s" ]; then
+            clear
             ./main
             # echo "Volte sempre!"
             return;
